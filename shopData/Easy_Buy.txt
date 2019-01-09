@@ -1,0 +1,103 @@
+--ShopSystem数据库
+CREATE DATABASE ShopSystem
+--Admin 表
+CREATE TABLE Admin
+(
+	a_name varchar(30) not null primary key,
+	a_pass varchar(30) not null,
+	a_header varchar(30) not null,
+	a_phone char(15) not null,
+	a_email varchar(40) not null
+)
+
+--Customer 表
+CREATE TABLE Customer
+(
+	c_name varchar(30) not null primary key,
+	c_pass varchar(30) not null,
+	c_header varchar(30) not null,
+	c_phone char(15) not null,
+	c_question varchar(30) not null,
+	c_answer varchar(30) not null,
+	c_address varchar(50) null,
+	c_email varchar(50) not null
+)
+
+--Idea 表(客户反馈的信息)
+CREATE TABLE Idea
+(
+	id char(10) not null,
+	c_name varchar(30) not null,
+	c_header varchar(30) not null,
+	new_message varchar(1000) not null,
+	re_message varchar(1000) null,
+	new_time char(15) not null,
+	re_time char(15) null
+)
+
+--main_type 表(菜单类别)
+CREATE TABLE main_type
+(
+	t_id char(10) not null,
+	t_type varchar(30) not null primary key
+)
+
+--sub_type 表(子类别)
+CREATE TABLE sub_type
+(
+	s_id char(10) not null primary key,
+	s_supertype char(10) not null,
+        s_name varchar(30) not null 
+)
+
+--Notice 表(公告栏信息)
+CREATE TABLE Notice
+(
+	n_id char(10) not null,
+	n_message char(1000)  not null,
+	n_admin char(30) not null,
+	n_header varchar(50) not null,
+	n_time char(10) not null
+)
+
+--Orders 表(订单表)
+CREATE TABLE Orders
+(
+	order_id char(10) not null primary key,
+	order_payment varchar(100) not null,
+	order_address varchar(200) not null,
+	order_email varchar(50) not null,
+	order_user varchar(30) not null,
+	order_time varchar(30) not null,
+	order_sum float not null
+)
+--OrderDetails 表(详细订单表)
+CREATE TABLE OrderDetails
+(
+	order_id char(10) not null,
+	p_id char(10) not null,
+	p_price float not null,
+	p_number int not null
+)
+ALTER TABLE OrderDetails
+ADD CONSTRAINT fk_id foreign key(order_id) references Orders(order_id)
+
+--Payment 表(支付信息)
+CREATE TABLE Payment
+(
+	pay_id char(10) not null,
+	pay_payment varchar(50) not null,
+	pay_msg varchar(500) null
+)
+--Product 表(产品表)
+CREATE TABLE Product
+(
+	p_type varchar(30) not null,
+	p_id char(10) not null primary key,
+	p_name varchar(40) not null,
+	p_price float not null,
+	p_quantity int not null,
+	p_image varchar(100) not null,
+	p_description varchar(2000) not null,
+	p_time varchar(20) null
+)
