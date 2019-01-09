@@ -1,4 +1,8 @@
-数据库：SQL Server 
+这是一个简单的J2EE技术实现的电子商城购物系统<br /> 
+
+可以直接部署到tomcat运行。<br/>
+
+数据库：SQL Server <br /> 
 
 数据库名称：ShopSystem 
 
@@ -10,7 +14,7 @@ ODBC数据源名称：shopData
 
 配置说明：
 
-1、附加数据库
+1.配置和附加数据库
 
-2、创建ODBC数据源数据shopData
+2.添加JDBC.jar包到tomcat目录中的lib包中
 
